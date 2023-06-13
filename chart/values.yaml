@@ -1,0 +1,7 @@
+# 
+---
+namespace: krateo-fire-hello-fire2-ns
+image: ghcr.io/krateoplatformops/krateo-fire-hello-fire2:latest
+replicas: 2
+name: krateo-fire-hello-fire2
+host: fireworks.krateo.site

@@ -1,0 +1,91 @@
+apiVersion: deployment.krateo.io/v1alpha1
+kind: FireworksApp
+metadata:
+  creationTimestamp: "2022-12-02T08:43:42Z"
+  labels:
+    crossplane.io/composite: hello-fire2-fireworksapp
+  name: hello-fire2-fireworksapp
+  uid: 84e0bf26-f55a-4bf5-bd18-9e2e2e710818
+spec:
+  compositionRef:
+    name: fireworksapp.deployment.krateo.io
+  compositionUpdatePolicy: Automatic
+  description: Fireworks App Deployment
+  flat:
+    destinationEndpoint: github
+    host: fireworks.krateo.site
+    name: hello-fire2
+    organizationName: krateoplatformops
+    replicas: 2
+  icon: fa-solid fa-fire
+  links:
+  - icon: fa-brands fa-git
+    title: krateoplatformops/krateo-fire-hello-fire2
+    url: https://github.com/krateoplatformops/krateo-fire-hello-fire2
+  owner: mauro
+  plugins:
+  - endpointName: argo-cd
+    icon: fa-solid fa-diagram-project
+    name: resources
+    type: argocd
+    value: hello-fire2-fireworksapp
+  - endpointName: github
+    icon: fa-solid fa-book
+    name: documentation
+    type: doc
+    values:
+    - '[krateoplatformops][krateo-fire-hello-fire2]README.md'
+  - icon: fa-brands fa-docker
+    name: kubernetes
+    type: kubernetes
+    value: deploymentId
+  - endpointName: github
+    icon: fa-solid fa-person-running
+    name: pipelines
+    type: pipeline
+    values:
+    - '[krateoplatformops][krateo-fire-hello-fire2]Build Docker image for every commit'
+  resourceRefs:
+  - apiVersion: kubernetes.crossplane.io/v1alpha1
+    kind: ProviderConfig
+    name: hello-fire2-fireworksapp-provider-k8s-pc-in
+  - apiVersion: kubernetes.crossplane.io/v1alpha1
+    kind: Object
+    name: hello-fire2-fireworksapp-argocd-app-object
+  - apiVersion: git.krateo.io/v1alpha1
+    kind: ProviderConfig
+    name: hello-fire2-fireworksapp-provider-git-pc
+  - apiVersion: kubernetes.crossplane.io/v1alpha1
+    kind: Object
+    name: hello-fire2-fireworksapp-fireworksapp-values
+  - apiVersion: git.krateo.io/v1alpha1
+    kind: Repo
+    name: hello-fire2-fireworksapp-snnl8
+  - apiVersion: github.krateo.io/v1alpha1
+    kind: ProviderConfig
+    name: hello-fire2-fireworksapp-provider-github-pc
+  - apiVersion: github.krateo.io/v1alpha1
+    kind: Repo
+    name: hello-fire2-fireworksapp-x5j6h
+  tags:
+  - fireworks
+  - template
+  - krateo
+  - katy perry
+  templateName: krateo-fireworks
+  title: hello-fire2
+  values:
+    endpointName: github
+    fromRepo:
+      organizationName: krateoplatformops
+      repositoryName: krateo-template-fireworksapp
+      schema: https
+    host: fireworks.krateo.site
+    namespace: krateo-system
+    organizationName: krateoplatformops
+    replicas: 2
+    repositoryName: krateo-fire-hello-fire2
+    toRepo:
+      organizationName: krateoplatformops
+      repositoryName: krateo-fire-hello-fire2
+      schema: https
